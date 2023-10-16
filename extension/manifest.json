@@ -1,0 +1,29 @@
+{
+    "manifest_version": 3,
+    "name": "Apps Script Execution Notifier",
+    "version": "1.0",
+    "description": "Notifies users on Gnome when a Google Apps Script execution completes in the Script Editor.",
+    "permissions": [
+        "activeTab",
+        "storage",
+        "nativeMessaging"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": {
+        "default_popup": "popup.html"
+    },
+    "content_scripts": [
+        {
+            "matches": ["https://script.google.com/*"],
+            "js": ["content.js"]
+        }
+    ],
+    "native_messaging_host": "com.yourdomain.appsscriptnotifier",
+    "icons": {
+        "16": "icon16.png",
+        "48": "icon48.png",
+        "128": "icon128.png"
+    }
+}
