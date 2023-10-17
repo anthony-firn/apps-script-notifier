@@ -1,9 +1,28 @@
 {
-    "name": "com.local.appsscriptnotifier",
-    "description": "Native messaging host for the Apps Script Execution Notifier extension",
-    "path": "/usr/bin/python3 /home/anthony/Dev/apps-script-notifier/native_messaging/send_gnome_notification.py",
-    "type": "stdio",
-    "allowed_origins": [
-        "chrome-extension://YOUR_EXTENSION_ID_HERE/"
-    ]
+    "manifest_version": 3,
+    "name": "Apps Script Execution Notifier",
+    "version": "1.0",
+    "description": "Notifies users on Gnome when a Google Apps Script execution completes in the Script Editor.",
+    "permissions": [
+        "activeTab",
+        "storage",
+        "nativeMessaging"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": {
+        "default_popup": "popup.html"
+    },
+    "content_scripts": [
+        {
+            "matches": ["https://script.google.com/*"],
+            "js": ["content.js"]
+        }
+    ],
+    "icons": {
+        "16": "icons/icon16.png",
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+    }
 }
