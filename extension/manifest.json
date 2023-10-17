@@ -20,7 +20,6 @@
             "js": ["content.js"]
         }
     ],
-    "native_messaging_host": "com.yourdomain.appsscriptnotifier",
     "icons": {
         "16": "icons/icon16.png",
         "48": "icons/icon48.png",

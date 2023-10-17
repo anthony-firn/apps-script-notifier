@@ -15,7 +15,7 @@ A solution that monitors the Google Apps Script Editor and notifies users on a G
 
 ## Introduction
 
-This project is designed to bridge Google Apps Script Editor and the Gnome desktop environment, allowing users to receive a notification whenever a script execution is completed. The solution is split into three components:
+This project is designed to bridge the Google Apps Script Editor and the Gnome desktop environment, allowing users to receive a notification whenever a script execution is completed. The solution is split into three components:
 
 1. **Browser Extension**: Tracks the Google Apps Script Editor tabs and listens for execution completion.
 2. **Tampermonkey Script**: Identifies when the "Execution completed" message appears in the Editor.
@@ -29,7 +29,10 @@ Before setting up, make sure to:
 
 - Have **Google Chrome** installed.
 - Have basic knowledge of navigating directories using a terminal.
-- Download or clone this repository to a known location on your system.
+- Clone this repository to a known location on your system using:
+   ```bash
+   git clone https://github.com/anthony-firn/apps-script-notifier.git
+   ```
 
 ### Setting Up the Browser Extension
 
@@ -42,7 +45,7 @@ Before setting up, make sure to:
 
 3. **Install the Extension**: 
    - Click `Load unpacked`.
-   - Locate and select the `extension/` directory from this repository.
+   - Navigate to and select the `apps-script-notifier/extension/` directory.
    - Confirm the installation.
 
 At this point, you should see the "Apps Script Execution Notifier" extension listed on the page. Make note of the extension's unique ID for the next steps.
@@ -56,7 +59,7 @@ At this point, you should see the "Apps Script Execution Notifier" extension lis
    - Click the Tampermonkey icon in the Chrome toolbar (a circle with two dots).
    - Go to `Dashboard`.
    - Click the `+` tab to create a new script.
-   - Replace any default content with the content of `tampermonkey/tampermonkey_script.js` from this repository.
+   - Replace any default content with the content of `apps-script-notifier/tampermonkey/tampermonkey_script.js`.
 
 3. **Update Extension ID**:
    - In the script, find `YOUR_EXTENSION_ID_HERE` and replace it with the extension ID noted earlier.
@@ -67,20 +70,20 @@ The Tampermonkey script will now communicate with the browser extension when in 
 ### Configuring the Native Messaging Host
 
 1. **Update Script and JSON Paths**:
-   - Open `native_messaging/native_messaging_host.json` in a text editor.
+   - Open `apps-script-notifier/native_messaging/appscript_notifier_host_manifest.json` in a text editor.
    - Adjust the `path` to point to the location of `send_gnome_notification.py` on your system.
    - Update `YOUR_EXTENSION_ID_HERE` with the extension ID from earlier.
 
 2. **Position the JSON Configuration**:
-   - Copy the updated `native_messaging_host.json` to the Chrome native messaging directory. This can be done using the terminal:
+   - Copy the updated `appscript_notifier_host_manifest.json` to the Chrome native messaging directory. This can be done using the terminal:
      ```bash
-     cp path_to_repo/native_messaging/native_messaging_host.json ~/.config/google-chrome/NativeMessagingHosts/
+     cp apps-script-notifier/native_messaging/appscript_notifier_host_manifest.json ~/.config/google-chrome/NativeMessagingHosts/
      ```
 
 3. **Grant Script Permissions**: 
    - Give execution permissions to the Python script:
      ```bash
-     chmod +x path_to_repo/native_messaging/send_gnome_notification.py
+     chmod +x apps-script-notifier/native_messaging/send_gnome_notification.py
      ```
 
 With this, the Native Messaging Host will be able to dispatch Gnome notifications when informed by the browser extension.
