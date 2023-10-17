@@ -14,6 +14,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 // Handle disconnections from the Native Messaging Host (Optional but recommended for error handling)
 port.onDisconnect.addListener(() => {
     if (chrome.runtime.lastError) {
-        console.error(chrome.runtime.lastError);
+        console.error(JSON.stringify(chrome.runtime.lastError, null, 2));
     }
 });
