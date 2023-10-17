@@ -1,9 +1,9 @@
 {
     "name": "com.local.appsscriptnotifier",
     "description": "Native messaging host for the Apps Script Execution Notifier extension",
-    "path": "/path/to/your/directory/send_gnome_notification.py",
+    "path": "/home/anthony/Dev/apps-script-notifier/native_messaging/native_messaging_host.sh",
     "type": "stdio",
     "allowed_origins": [
-        "chrome-extension://YOUR_EXTENSION_ID_HERE/"
+        "chrome-extension://apgfljnkpdgcongpdmgfahhlnkhiemaj/"
     ]
 }
